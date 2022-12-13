@@ -6,6 +6,7 @@
 #include <Psapi.h>
 #define CURL_STATICLIB
 #include <curl.h>
+#include <gdiplus.h>
 
 // You need rotating HTTPS proxies
 #define PROXY "https://p.webshare.io:9999"
@@ -431,7 +432,7 @@ const int main()
     Init();
 
     for (unsigned char i = 0; i < SHARD_COUNT; i++) {
-        // Generate and log into Steam account here <--- (can't share method)
+        // Generate and log into Steam account here <--- (Can't share method)
 
         websocketpp::client<websocketpp::config::asio_tls_client> c;
         c.init_asio();
@@ -443,7 +444,7 @@ const int main()
         unsigned char pTicket[1024];
         uint32 pcbTicket = 0;
         SteamAPI_Init();
-        const HAuthTicket ticket = SteamUser()->GetAuthSessionTicket(pTicket, 1024, &pcbTicket);
+        SteamUser()->GetAuthSessionTicket(pTicket, 1024, &pcbTicket);
 
         std::string formattedpTicket;
         std::string rc = "00";
@@ -470,7 +471,7 @@ const int main()
         #endif
         shards.push_back(shard{ &c });
 
-        std::string request = "un=" + std::to_string(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count()) +
+        const std::string request = "un=" + std::to_string(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count()) +
             "&sid=" + std::to_string(SteamUser()->GetSteamID().ConvertToUint64()) +
             "&u=" + SteamFriends()->GetPersonaName() +
             "&pt=" + formattedpTicket +
