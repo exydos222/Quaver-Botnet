@@ -6,7 +6,6 @@
 #include <Psapi.h>
 #define CURL_STATICLIB
 #include <curl.h>
-#include <gdiplus.h>
 
 // You need rotating HTTPS proxies
 #define PROXY "https://p.webshare.io:9999"
