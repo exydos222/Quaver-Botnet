@@ -6,7 +6,6 @@
 #include <Psapi.h>
 #define CURL_STATICLIB
 #include <curl.h>
-#include <gdiplus.h>
 
 // You need rotating HTTPS proxies
 #define PROXY "https://p.webshare.io:9999"
@@ -432,7 +431,7 @@ const int main()
     Init();
 
     for (unsigned char i = 0; i < SHARD_COUNT; i++) {
-        // Generate and log into Steam account here <--- (Can't share method)
+        // Generate and log into Steam account here <--- (can't share method)
 
         websocketpp::client<websocketpp::config::asio_tls_client> c;
         c.init_asio();
